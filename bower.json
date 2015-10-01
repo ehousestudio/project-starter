@@ -1,0 +1,9 @@
+{
+  "name": "project-starter",
+  "version": "1.0.0",
+  "private": "true",
+  "devDependencies": {
+    "FitVids": "~1.1.0",
+    "picturefill": "~2.3.1"
+  }
+}
