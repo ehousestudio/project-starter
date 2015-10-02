@@ -2,7 +2,7 @@
 A CMS agnostic front-end project starter.
 
 ###Dependencies:
-**Node:** Run `$ node -v` to see Node is installed. If Node is not installed, visit [nodejs.org](http://nodejs.org) and then click that big green "Install" button.
+**Node:** Run `$ node -v` to see if Node is installed. If Node is not installed, visit [nodejs.org](http://nodejs.org) and then click that big green "Install" button.
 
 ###Installation:
 1. Clone Project Starter - `$ git clone https://github.com/ehousestudio/project-starter.git ProjectName`
