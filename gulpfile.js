@@ -11,6 +11,7 @@ var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
+var stripcomments = require('gulp-strip-json-comments');
 
 var src = {
     sass:       'src/sass/**/*.scss',
@@ -67,6 +68,7 @@ gulp.task('sass', function() {
         includePaths: ['sass'].concat(neat)
     }))
     .pipe(autoprefixer())
+    .pipe(stripcomments())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(dest.css))
     .pipe(browserSync.stream());
