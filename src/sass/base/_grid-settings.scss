@@ -1,14 +1,46 @@
 @import "neat-helpers"; // or "../neat/neat-helpers" when not in Rails
 
-// Neat Overrides
-// $column: 90px;
-// $gutter: 30px;
-// $grid-columns: 12;
-// $max-width: 1200px;
+// Change the grid settings
+$column: 93px !default;
+// Column width
+$gutter: 24px !default;
+// Gutter between each two columns
+$grid-columns: 12;
 
-// Neat Breakpoints
-$medium-screen: 600px;
-$large-screen: 900px;
+$small-width: 320px;
+$medium-width: 568px;
+$large-width: 768px;
+$xlarge-width: 1024px;
+$xxlarge-width: 1200px;
+$max-width: 1440px;
 
-$medium-screen-up: new-breakpoint(min-width $medium-screen 4);
-$large-screen-up: new-breakpoint(min-width $large-screen 8);
+// Define your breakpoints
+$small: new-breakpoint(min-width 0 max-width em($medium-width - 1), $grid-columns);
+$small-up: new-breakpoint(min-width 0, $grid-columns);
+
+$medium: new-breakpoint(min-width em($medium-width) max-width em($large-width - 1), $grid-columns);
+$medium-up: new-breakpoint(min-width em($medium-width), $grid-columns);
+
+$large: new-breakpoint(min-width em($large-width) max-width em($xlarge-width - 1), $grid-columns);
+$large-up: new-breakpoint(min-width em($large-width), $grid-columns);
+
+$xlarge: new-breakpoint(min-width em($xlarge-width) max-width em($xxlarge-width - 1), $grid-columns);
+$xlarge-up: new-breakpoint(min-width em($xlarge-width), $grid-columns);
+
+$xxlarge: new-breakpoint(min-width em($xxlarge-width) max-width em($max-width - 1), $grid-columns);
+$xxlarge-up: new-breakpoint(min-width em($xxlarge-width), $grid-columns);
+
+$max: new-breakpoint(min-width em($max-width), $grid-columns);
+
+// Combos
+$small-medium: new-breakpoint(min-width 0 max-width em($large-width - 1), $grid-columns);
+$small-large: new-breakpoint(min-width 0 max-width em($xlarge-width - 1), $grid-columns);
+$small-xlarge: new-breakpoint(min-width 0 max-width em($xxlarge-width - 1), $grid-columns);
+
+$medium-large: new-breakpoint(min-width em($medium-width) max-width em($xlarge-width - 1), $grid-columns);
+$medium-xlarge: new-breakpoint(min-width em($medium-width) max-width em($xxlarge-width - 1), $grid-columns);
+
+$large-xlarge: new-breakpoint(min-width em($large-width) max-width em($xxlarge-width - 1), $grid-columns);
+$large-xxlarge: new-breakpoint(min-width em($large-width) max-width em($max-width - 1), $grid-columns);
+
+$xlarge-xxlarge: new-breakpoint(min-width em($xlarge-width) max-width em($max-width - 1), $grid-columns);
