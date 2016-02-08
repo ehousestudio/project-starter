@@ -1,5 +1,5 @@
 #eHouse Studio Project Starter
-A CMS agnostic front-end project starter.
+A front-end project starter.
 
 ###Dependencies:
 **Node:** Run `$ node -v` to see if Node is installed. If Node is not installed, visit [nodejs.org](http://nodejs.org) and then click that big green "Install" button.
