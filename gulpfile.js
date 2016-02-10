@@ -1,17 +1,18 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var neat = require('node-neat').includePaths;
+var addsrc = require('gulp-add-src');
 var autoprefixer = require('gulp-autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
+var bowerFiles = require('bower-files')();
 var browserSync = require('browser-sync').create();
 var concat = require('gulp-concat');
-var sassbeautify = require('gulp-sassbeautify');
-var plumber = require('gulp-plumber');
+var gulp = require('gulp');
+var gutil = require('gulp-util');
 var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
+var neat = require('node-neat').includePaths;
+var plumber = require('gulp-plumber');
+var sass = require('gulp-sass');
+var sassbeautify = require('gulp-sassbeautify');
+var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
-var gutil = require('gulp-util');
-var stripcomments = require('gulp-strip-json-comments');
 
 var src = {
     sass:       'src/sass/**/*.scss',
@@ -30,17 +31,23 @@ var onError = function(err) {
     gutil.log(err);
 }
 
+gulp.task('bower', function() {
+    gulp.src(bowerFiles.ext('js').files)
+    .pipe(concat('_vendor.js'))
+    .pipe(gulp.dest('src/scripts'));
+});
+
 gulp.task('scripts', function() {
     gulp.src([
-        './bower_components/jquery/dist/jquery.js',
-        './bower_components/FitVids/jquery.fitvids.js',
-        './bower_components/picturefill/dist/picturefill.js',
         './src/scripts/global.js'
     ])
     .pipe(plumber({
         errorHandler: onError
     }))
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(sourcemaps.init())
+    .pipe(addsrc.prepend('./src/scripts/_vendor.js'))
     .pipe(concat('global-min.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write())
@@ -82,7 +89,7 @@ gulp.task('pretty', function() {
         .pipe(gulp.dest('./src/sass'));
 });
 
-gulp.task('serve', ['sass', 'scripts'], function() {
+gulp.task('serve', ['sass', 'bower', 'scripts'], function() {
     browserSync.init({
         proxy: ''
     });
