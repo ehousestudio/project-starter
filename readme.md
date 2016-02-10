@@ -17,8 +17,10 @@ A front-end project starter.
 
 `$ gulp images` - Minifies PNG, JPEG, GIF and SVG images in `public/images` and saves to same dir
 
-`$ gulp sass` - Compiles Sass and creates sourcemap while outputing to `public/css`
+`$ gulp sass` - Compiles Sass and creates source map while outputting to `public/css`
 
 `$ gulp pretty` - Runs through all the Sass files and cleans them up with proper indenting
+
+`$ gulp bower` - Runs through all the Bower dependencies and concatenates all the files and outputs to `src/scripts/_vendor.js`
 
 `$ gulp serve` - Watches for changes by default on `src/sass` and `src/scripts` directories (additional watch paths can be added as indicated in installation step 6)
