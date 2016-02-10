@@ -15,14 +15,14 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 
 var src = {
-    sass:       'src/sass/**/*.scss',
-    scripts:    'src/scripts/**/*.js',
-    images:     'public/images/**/*'
+    sass: 'src/sass/**/*.scss',
+    scripts: 'src/scripts/**/*.js',
+    images: 'public/images/**/*'
 };
 var dest = {
-    css:        'public/css',
-    scripts:    'public/scripts',
-    images:     'public/images'
+    css: 'public/css',
+    scripts: 'public/scripts',
+    images: 'public/images'
 };
 
 // Gulp plumber error handler
