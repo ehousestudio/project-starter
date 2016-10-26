@@ -55,6 +55,22 @@ gulp.task('scripts', function() {
     .pipe(browserSync.stream());
 });
 
+gulp.task('scripts-prod', function() {
+    gulp.src([
+        './src/scripts/global.js'
+    ])
+    .pipe(plumber({
+        errorHandler: onError
+    }))
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(addsrc.prepend('./src/scripts/_vendor.js'))
+    .pipe(concat('global-min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(dest.scripts))
+    .pipe(browserSync.stream());
+});
+
 gulp.task('images', function() {
     gulp.src(src.images)
     .pipe(plumber({
@@ -77,6 +93,21 @@ gulp.task('sass', function() {
     .pipe(autoprefixer())
     .pipe(stripcomments())
     .pipe(sourcemaps.write())
+    .pipe(gulp.dest(dest.css))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('sass-prod', function() {
+    gulp.src(src.sass)
+    .pipe(plumber({
+        errorHandler: onError
+    }))
+    .pipe(sass({
+        outputStyle: 'compressed',
+        includePaths: ['sass'].concat(neat)
+    }))
+    .pipe(autoprefixer())
+    .pipe(stripcomments())
     .pipe(gulp.dest(dest.css))
     .pipe(browserSync.stream());
 });
